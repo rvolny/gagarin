@@ -28,3 +28,12 @@ npm test
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Guides
+Vue - https://vuejs.org/v2/guide/  
+Vue Router - https://router.vuejs.org/
+Vuex - https://vuex.vuejs.org/guide/  
+Vue I18n - https://kazupon.github.io/vue-i18n/guide/started.html  
+Vue Authenticate - https://github.com/dgrubelic/vue-authenticate  
+Vue axios - https://github.com/imcvampire/vue-axios  
+Bootstrap Vue - https://bootstrap-vue.js.org/docs/components/  
