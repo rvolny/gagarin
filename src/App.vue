@@ -8,9 +8,16 @@
 </template>
 
 <script>
-  // TODO onload check status of vueAuth.isAuthenticated()
+  import * as Const from './const'
+
   export default {
-    name: 'app'
+    name: 'app',
+    mounted: function () {
+      if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+        console.log('Checking for present auth token')
+      }
+      this.$store.dispatch('checkAuthentication')
+    }
   }
 </script>
 

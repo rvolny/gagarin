@@ -40,6 +40,8 @@
 </template>
 
 <script>
+  import * as Const from '../const'
+
   export default {
     name: 'login',
     data () {
@@ -53,7 +55,7 @@
     },
     computed: {
       isAuthenticated: function () {
-        return this.$store.getters.isAuthenticated
+        return this.$store.state.isAuthenticated
       }
     },
     methods: {
@@ -66,8 +68,13 @@
         }
 
         this.$store.dispatch('login', {user, requestOptions: {}}).then(() => {
-          console.log('Authenticated')
+          if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+            console.log('User authenticated')
+          }
         }).catch(() => {
+          if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+            console.log('User authentication failed')
+          }
           this.showModal()
         })
       },

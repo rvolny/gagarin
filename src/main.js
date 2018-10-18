@@ -15,6 +15,8 @@ import VueAxios from 'vue-axios'
 import axios from 'axios'
 // Import authentication
 import { VueAuthenticate } from 'vue-authenticate'
+// Import constants
+import * as Const from './const'
 
 // Use BootstrapVue
 Vue.use(BootstrapVue)
@@ -35,8 +37,7 @@ Vue.use(VueAxios, axios)
 
 // Use authentication
 const vueAuth = new VueAuthenticate(Vue.prototype.$http, {
-  // TODO: load from local .env
-  baseUrl: 'http://raketa.local/api'
+  baseUrl: Const.BASE_API_URL
 })
 
 // Init vuex store
@@ -46,7 +47,7 @@ const store = new Vuex.Store({
   },
   getters: {
     isAuthenticated: state => {
-      return state.isAuthenticated
+      return vueAuth.isAuthenticated()
     }
   },
   mutations: {
@@ -67,6 +68,21 @@ const store = new Vuex.Store({
           reject()
         })
       })
+    },
+    // Check if token is already present and if it is, log user in
+    checkAuthentication (context) {
+      if (vueAuth.isAuthenticated()) {
+        if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+          console.log('Auth token found\nPerforming automatic login')
+        }
+        context.commit('isAuthenticated', {
+          isAuthenticated: vueAuth.isAuthenticated()
+        })
+      } else {
+        if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+          console.log('Auth token not found')
+        }
+      }
     }
   }
 })
