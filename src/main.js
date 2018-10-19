@@ -15,6 +15,8 @@ import VueAxios from 'vue-axios'
 import axios from 'axios'
 // Import authentication
 import { VueAuthenticate } from 'vue-authenticate'
+// Import raketa api
+import raketa from './api/raketa'
 // Import constants
 import * as Const from './const'
 
@@ -43,16 +45,23 @@ const vueAuth = new VueAuthenticate(Vue.prototype.$http, {
 // Init vuex store
 const store = new Vuex.Store({
   state: {
-    isAuthenticated: false
+    isAuthenticated: false,
+    user: {}
   },
   getters: {
     isAuthenticated: state => {
       return vueAuth.isAuthenticated()
+    },
+    user: state => {
+      return this.user
     }
   },
   mutations: {
     isAuthenticated (state, payload) {
       state.isAuthenticated = payload.isAuthenticated
+    },
+    user (state, payload) {
+      state.user = payload
     }
   },
   actions: {
@@ -83,8 +92,43 @@ const store = new Vuex.Store({
           console.log('Auth token not found')
         }
       }
+    },
+    getUserInfo (context) {
+      raketa.getUserInfo().then((response) => {
+        context.commit('user', response)
+      })
     }
   }
+})
+
+// Add a request interceptor for logging
+Vue.axios.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+    console.log(`Calling ${config.url}`)
+  }
+  return config
+}, function (error) {
+  // Do something with request error
+  if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+    console.log(`Error calling api`)
+  }
+  return Promise.reject(error)
+})
+
+// Add a response interceptor for logging
+Vue.axios.interceptors.response.use(function (response) {
+  // Do something with response data
+  if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+    console.log(`Calling ${response.config.url} with status ${response.status}`)
+  }
+  return response
+}, function (error) {
+  // Do something with response error
+  if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+    console.log(`Error response from api`)
+  }
+  return Promise.reject(error)
 })
 
 /* eslint-disable no-new */

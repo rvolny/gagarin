@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
     <h1>{{ msg }} - {{ $t('message.welcome') }}</h1>
+    <p v-if="user.id">
+      <span>{{ user.name }} {{ user.surname }}</span>
+    </p>
     <p>
       <router-link to="/login">Login</router-link>
     </p>
@@ -25,10 +28,15 @@
 
 <script>
   export default {
-    name: 'hello',
+    name: 'home',
     data () {
       return {
         msg: 'Welcome to Your Vue.js App'
+      }
+    },
+    computed: {
+      user: function () {
+        return this.$store.state.user
       }
     }
   }
