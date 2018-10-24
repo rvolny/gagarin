@@ -28,6 +28,10 @@ const messages = {
     },
     validations: {
       // Reserved for veeValidate plugin
+      attributes: {
+        email: 'e-mail',
+        password: 'heslo'
+      }
     }
   }
 };
