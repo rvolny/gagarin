@@ -8,7 +8,10 @@ const messages = {
         labelEmail: 'Your email',
         labelPassword: 'Your password',
         buttonLogin: 'Login',
-        buttonReset: 'Reset'
+        buttonReset: 'Reset',
+        loginFailedTitle: 'Login failed',
+        loginFailedText: 'Unable to log you in with provided credentials.',
+        loginFailedButton: 'OK'
       }
     },
     validations: {
@@ -23,7 +26,10 @@ const messages = {
         labelEmail: 'Vaša e-mailová adresa',
         labelPassword: 'Vaše heslo',
         buttonLogin: 'Prihlásiť',
-        buttonReset: 'Zmazať'
+        buttonReset: 'Zmazať',
+        loginFailedTitle: 'Neúspešné prihlásenie',
+        loginFailedText: 'Prihlásenie s uvedeným e-mailom a heslom sa nepodarilo.',
+        loginFailedButton: 'OK'
       }
     },
     validations: {
