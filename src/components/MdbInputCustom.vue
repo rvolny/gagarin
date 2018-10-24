@@ -21,13 +21,14 @@
       :value="innerValue"
     />
     <label v-if="label && !basic" :class="labelClasses" @click="focus" ref="label" :for="id">{{label}}</label>
+    <div v-if="validationError" class="invalid-feedback-custom">{{validationError}}</div>
     <slot></slot>
   </div>
 </template>
 
 <script>
   import classNames from 'classnames';
-  import waves from '../mixins/waves';
+  import waves from '../../node_modules/mdbvue/src/mixins/waves';
 
   const Input = {
     props: {
@@ -123,7 +124,10 @@
       },
       labelClass: {
         type: [Array, String]
-      }
+      },
+      validationError: {
+        type: String
+      },
     },
     data() {
       return {
@@ -213,7 +217,7 @@
   };
 
   export default Input;
-  export { Input as mdbInput };
+  export { Input as mdbInputCustom };
 </script>
 
 <style scoped>
@@ -291,5 +295,12 @@
     width: 15px;
     height: 15px; }
 
+  .invalid-feedback-custom {
+    display: block;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+  }
 
 </style>

@@ -1,77 +1,59 @@
 <template>
-  <div>
-    <container>
-      <row class="mt-5 align-items-center justify-content-start">
-        <column md="6">
-          <form @submit="onSubmit" class="needs-validation" novalidate>
-            <p class="h4 text-center mb-4">Sign in</p>
-            <div class="grey-text">
-              <mdb-input v-model="form.email" label="Your email" icon="envelope" type="email" required/>
-              <mdb-input v-model="form.password" label="Your password" icon="lock" type="password" required/>
-            </div>
-            <div class="text-center">
-              <btn>Login</btn>
-            </div>
-          </form>
-        </column>
-      </row>
+  <container>
+    <row class="mt-5 align-items-center justify-content-center">
+      <column md="6">
+        <form @submit="onSubmit" @reset="onReset" class="needs-validation" novalidate v-if="showForm">
+          <p class="h4 text-center mb-4">{{ $t('message.auth.pageTitle') }}</p>
+          <div class="grey-text">
+            <mdb-input-custom v-model="form.email" name="email" :label="$t('message.auth.labelEmail')" icon="envelope"
+                              type="email" required v-validate="'required|email'"
+                              :validation-error="errors.first('email')"/>
 
-      <h4>Success</h4>
-      <btn rounded color="default" @click.native="showSuccessModal = true">launch success modal
-        <fa icon="eye" class="ml-1"/>
-      </btn>
-      <modal v-if="showSuccessModal" @close="showSuccessModal = false" success>
-        <modal-header>
-          <modal-title>Success Modal</modal-title>
-        </modal-header>
-        <modal-body class="text-center">
-          <fa icon="check" size="4x" class="mb-3 animated rotateIn"/>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam
-            blanditiis ad consequatur in dolores culpa, dignissimos, eius non possimus fugiat.
-            Esse ratione fuga, enim, ab officiis totam.
-          </p>
-        </modal-body>
-        <modal-footer center>
-          <btn color="success" @click.native="showSuccessModal = false">Get it now
-            <fa icon="diamond" class="ml-1" color="white"/>
-          </btn>
-          <btn outline="success" @click.native="showSuccessModal = false">No, thanks</btn>
-        </modal-footer>
-      </modal>
+            <mdb-input-custom v-model="form.password" name="password" :label="$t('message.auth.labelPassword')"
+                              icon="lock" type="password" required v-validate="'required|min:6'"
+                              :validation-error="errors.first('password')"/>
+          </div>
+          <div class="text-center">
+            <btn color="primary" type="submit">{{ $t('message.auth.buttonLogin') }}</btn>
+            <btn outline="default" type="reset">{{ $t('message.auth.buttonReset') }}</btn>
+          </div>
+        </form>
+      </column>
+    </row>
 
-      <btn rounded color="default" @click.native="showFailedModal=true">launch danger modal
-        <fa icon="eye" class="ml-1"/>
-      </btn>
-      <modal v-if="showFailedModal" @close="showFailedModal = false" danger>
-        <modal-header>
-          <modal-title>Danger Modal</modal-title>
-        </modal-header>
-        <modal-body>
-          <row>
-            <column col="3" class="text-center">
-              <fa icon="shopping-cart" size="4x"/>
-            </column>
-            <column col="9">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, molestiae provident
-                temporibus sunt earum.</p>
-              <h2>
-                <badge>v52gs1</badge>
-              </h2>
-            </column>
-          </row>
-        </modal-body>
-        <modal-footer center>
-          <btn color="danger" @click.native="showFailedModal = false">Get it now
-            <fa icon="diamond" class="ml-1" color="white"/>
-          </btn>
-          <btn outline="danger" @click.native="showFailedModal = false">No, thanks</btn>
-        </modal-footer>
-      </modal>
+    <h4>Success</h4>
+    <btn rounded color="default" @click.native="showLoginFailedModal=true">launch danger modal
+      <fa icon="eye" class="ml-1"/>
+    </btn>
+    <modal v-if="showLoginFailedModal" @close="showLoginFailedModal = false" danger>
+      <modal-header>
+        <modal-title>Danger Modal</modal-title>
+      </modal-header>
+      <modal-body>
+        <row>
+          <column col="3" class="text-center">
+            <fa icon="shopping-cart" size="4x"/>
+          </column>
+          <column col="9">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, molestiae provident
+              temporibus sunt earum.</p>
+            <h2>
+              <badge>v52gs1</badge>
+            </h2>
+          </column>
+        </row>
+      </modal-body>
+      <modal-footer center>
+        <btn color="danger" @click.native="showLoginFailedModal = false">Get it now
+          <fa icon="diamond" class="ml-1" color="white"/>
+        </btn>
+        <btn outline="danger" @click.native="showLoginFailedModal = false">No, thanks</btn>
+      </modal-footer>
+    </modal>
 
-      <p>Authenticated: {{ this.isAuthenticated }}</p>
-    </container>
+    <p>Authenticated: {{ this.isAuthenticated }}</p>
+  </container>
 
-  </div>
 </template>
 
 <script>
@@ -82,7 +64,6 @@
     Column,
     Container,
     Fa,
-    mdbInput,
     Modal,
     ModalBody,
     ModalFooter,
@@ -90,6 +71,7 @@
     ModalTitle,
     Row
   } from 'mdbvue';
+  import mdbInputCustom from './MdbInputCustom';
 
   export default {
     name: 'login',
@@ -98,7 +80,7 @@
       Row,
       Column,
       Fa,
-      mdbInput,
+      mdbInputCustom,
       Btn,
       Modal,
       ModalHeader,
@@ -113,8 +95,8 @@
           email: '',
           password: ''
         },
-        showSuccessModal: false,
-        showFailedModal: false
+        showForm: true,
+        showLoginFailedModal: false
       };
     },
     computed: {
@@ -126,37 +108,42 @@
       onSubmit (event) {
         event.preventDefault();
 
-        let user = {
-          email: this.form.email,
-          password: this.form.password
-        };
+        this.$validator.validate()
+          .then(result => {
+            if (result) {
+              // Validation is OK, proceed with login
+              let user = {
+                email: this.form.email,
+                password: this.form.password
+              };
 
-        this.$store.dispatch('login', {user, requestOptions: {}})
-          .then(() => {
-            if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
-              console.log('User authenticated');
+              this.$store.dispatch('login', {user, requestOptions: {}})
+                .then(() => {
+                  if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+                    console.log('User authenticated');
+                  }
+                })
+                .catch(() => {
+                  if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+                    console.log('User authentication failed');
+                  }
+                  this.showLoginFailedModal = true;
+                });
             }
-            this.showSuccessModal = true;
-          })
-          .catch(() => {
-            if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
-              console.log('User authentication failed');
-            }
-            this.showFailedModal = true;
           });
       },
 
-      // TODO - asi nie je potrebne
       onReset (event) {
         event.preventDefault();
 
         // Reset our form values
+        // TODO Material input uses $emit inside component. To handle input value changes use @input event instead of v-model.
         this.form.email = '';
         this.form.password = '';
 
         // Trick to reset/clear native browser form validation state
-        this.show = false;
-        this.$nextTick(() => {this.show = true;});
+        this.showForm = false;
+        this.$nextTick(() => {this.showForm = true;});
       }
     }
   };
