@@ -51,33 +51,33 @@
 </template>
 
 <script>
-  import * as Const from './const'
+  import * as Const from './const';
 
   export default {
     name: 'app',
     computed: {
-      isAuthenticated: function () {
-        return this.$store.state.isAuthenticated
+      isAuthenticated () {
+        return this.$store.state.isAuthenticated;
       }
     },
     watch: {
-      isAuthenticated: function () {
+      isAuthenticated () {
         if (this.isAuthenticated) {
           // Load user data
-          this.$store.dispatch('getUserInfo')
+          this.$store.dispatch('getUserInfo');
         } else {
           // Log out user
           // TODO
         }
       }
     },
-    mounted: function () {
+    mounted () {
       if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
-        console.log('Checking for present auth token')
+        console.log('Checking for present auth token');
       }
-      this.$store.dispatch('checkAuthentication')
+      this.$store.dispatch('checkAuthentication');
     }
-  }
+  };
 </script>
 
 <style>

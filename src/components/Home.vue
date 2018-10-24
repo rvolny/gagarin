@@ -32,14 +32,14 @@
     data () {
       return {
         msg: 'Welcome to Your Vue.js App'
-      }
+      };
     },
     computed: {
-      user: function () {
-        return this.$store.state.user
+      user () {
+        return this.$store.state.user;
       }
     }
-  }
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

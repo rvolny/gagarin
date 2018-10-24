@@ -10,6 +10,6 @@ const messages = {
       welcome: 'Vitajte'
     }
   }
-}
+};
 
-export default messages
+export default messages;

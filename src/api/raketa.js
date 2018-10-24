@@ -1,12 +1,12 @@
 // Import Vue
-import Vue from 'vue'
-import * as Const from '../const'
+import Vue from 'vue';
+import * as Const from '../const';
 
 // List of all available raketa api
 // const BASE_URL = 'http://raketa.local/api';
 const API = {
   'ME': Const.BASE_API_URL + '/v1/me'
-}
+};
 
 export default {
 
@@ -24,8 +24,9 @@ export default {
 //   },
 //
   getUserInfo () {
-    return Vue.axios.get(API.ME).then((response) => {
-      return response.data
-    })
+    return Vue.axios.get(API.ME)
+      .then(response => {
+        return response.data;
+      });
   }
-}
+};
