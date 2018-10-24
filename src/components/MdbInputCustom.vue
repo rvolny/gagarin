@@ -145,7 +145,8 @@
             'validate valid': this.valid,
             'validate invalid': this.invalid,
             'filled-in': this.filled,
-            'with-gap': this.gap
+            'with-gap': this.gap,
+            'is-invalid-custom': this.validationError
           },
           this.type === 'checkbox' ? this.gap ? false : 'form-check-input' : false,
           this.type === 'radio' ? 'form-check-input' : false
@@ -301,6 +302,10 @@
     margin-top: .25rem;
     font-size: 80%;
     color: #dc3545;
+  }
+
+  .is-invalid-custom {
+    border-color: #dc3545 !important;
   }
 
 </style>
