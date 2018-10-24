@@ -16,6 +16,8 @@ import axios from 'axios';
 import { VueAuthenticate } from 'vue-authenticate';
 // Import form validations
 import VeeValidate from 'vee-validate';
+import veeValidationMessagesEn from 'vee-validate/dist/locale/en';
+import veeValidationMessagesSk from 'vee-validate/dist/locale/sk';
 // Import raketa api
 import raketa from './api/raketa';
 // Import constants
@@ -30,7 +32,8 @@ Vue.use(Vuex);
 Vue.use(VueI18n);
 const i18n = new VueI18n({
   locale: 'sk', // set locale
-  messages: Messages // set locale messages
+  messages: Messages, // set locale messages
+  silentTranslationWarn: true
 });
 
 // Use Axios
@@ -47,11 +50,14 @@ const veeValidateConfig = {
   classNames: {},
   classes: false,
   delay: 0,
-  dictionary: null,
+  dictionary: {
+    en: veeValidationMessagesEn,
+    sk: veeValidationMessagesSk
+  },
   errorBagName: 'errors', // change if property conflicts
   events: 'blur',
   fieldsBagName: 'fields',
-  i18n: null, // the vue-i18n plugin instance
+  i18n, // the vue-i18n plugin instance
   i18nRootKey: 'validations', // the nested key under which the validation
                               // messages will be located
   inject: true,

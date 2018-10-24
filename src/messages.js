@@ -10,6 +10,9 @@ const messages = {
         buttonLogin: 'Login',
         buttonReset: 'Reset'
       }
+    },
+    validations: {
+      // Reserved for veeValidate plugin
     }
   },
   sk: {
@@ -22,6 +25,9 @@ const messages = {
         buttonLogin: 'Prihlásiť',
         buttonReset: 'Zmazať'
       }
+    },
+    validations: {
+      // Reserved for veeValidate plugin
     }
   }
 };

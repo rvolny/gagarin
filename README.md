@@ -36,4 +36,6 @@ Vuex - https://vuex.vuejs.org/guide/
 Vue I18n - https://kazupon.github.io/vue-i18n/guide/started.html  
 Vue Authenticate - https://github.com/dgrubelic/vue-authenticate  
 Vue axios - https://github.com/imcvampire/vue-axios  
-Bootstrap Vue - https://bootstrap-vue.js.org/docs/components/  
+VeeValidate - https://baianat.github.io/vee-validate/  
+MDBVue - https://mdbootstrap.com/vue/  
+  
