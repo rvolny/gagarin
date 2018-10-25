@@ -9,16 +9,18 @@
         <!-- Navbar left -->
         <navbar-nav>
           <navbar-item :href="this.$router.resolve({name:'Home'}).route.path" router waves-fixed>Home</navbar-item>
-          <navbar-item :href="this.$router.resolve({name:'Login'}).route.path" router waves-fixed>Login</navbar-item>
         </navbar-nav>
         <!-- Navbar left -->
 
         <!-- Navbar right -->
         <navbar-nav right>
-          <navbar-item href="#" router waves-fixed>
+          <navbar-item :href="this.$router.resolve({name:'Login'}).route.path" router waves-fixed
+                       v-if="!isAuthenticated">Login
+          </navbar-item>
+          <navbar-item href="#" router waves-fixed v-if="isAuthenticated">
             <fa icon="envelope"/>
           </navbar-item>
-          <dropdown tag="li" class="nav-item">
+          <dropdown tag="li" class="nav-item" v-if="isAuthenticated">
             <dropdown-toggle tag="a" navLink slot="toggle" waves-fixed>{{ this.user.name }}
             </dropdown-toggle>
             <dropdown-menu>
