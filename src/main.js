@@ -111,6 +111,9 @@ const store = new Vuex.Store({
           context.commit('isAuthenticated', {
             isAuthenticated: vueAuth.isAuthenticated()
           });
+
+          // Return to home page
+          router.push({name: 'Home'});
         });
     },
     // Check if token is already present and if it is, log user in
