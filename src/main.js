@@ -164,6 +164,7 @@ Vue.axios.interceptors.request.use(function (config) {
   // Do something with request error
   if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
     console.log(`Error calling api`);
+    console.log(error);
   }
   return Promise.reject(error);
 });
@@ -173,13 +174,14 @@ Vue.axios.interceptors.response.use(function (response) {
   // Do something with response data
   if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
     console.log(
-      `⤷ Calling ${response.config.url} with status ${response.status}`);
+      `⤷ Call to ${response.config.url} finished with status ${response.status}`);
   }
   return response;
 }, function (error) {
   // Do something with response error
   if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
     console.log(`⤷ Error response from api`);
+    console.log(error);
   }
   return Promise.reject(error);
 });
