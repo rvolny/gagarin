@@ -19,10 +19,10 @@
             <fa icon="envelope"/>
           </navbar-item>
           <dropdown tag="li" class="nav-item">
-            <dropdown-toggle tag="a" navLink color="indigo" slot="toggle" waves-fixed>{{ this.user.name }}
+            <dropdown-toggle tag="a" navLink slot="toggle" waves-fixed>{{ this.user.name }}
             </dropdown-toggle>
             <dropdown-menu>
-              <dropdown-item>Logout</dropdown-item>
+              <dropdown-item @click.native="logout">Logout</dropdown-item>
             </dropdown-menu>
           </dropdown>
         </navbar-nav>
@@ -117,10 +117,10 @@
       isAuthenticated () {
         if (this.isAuthenticated) {
           // Load user data
-          this.$store.dispatch('getUserInfo');
+          this.$store.dispatch('getUserData');
         } else {
-          // Log out user
-          // TODO
+          // Remove user data
+          this.$store.dispatch('removeUserData');
         }
       }
     },
@@ -129,6 +129,12 @@
         console.log('Checking for present auth token');
       }
       this.$store.dispatch('checkAuthentication');
+    },
+    methods: {
+      logout (event) {
+        event.preventDefault();
+        this.$store.dispatch('logout');
+      }
     }
   };
 </script>

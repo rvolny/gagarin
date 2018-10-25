@@ -69,12 +69,8 @@
         return this.$store.state.isAuthenticated;
       }
     },
-    watch: {
-      'form.email' (newValue) {
-        this.$emit('input', newValue);
-      }
-    },
     methods: {
+      // Submit login form
       onSubmit (event) {
         event.preventDefault();
 
@@ -90,12 +86,13 @@
               this.$store.dispatch('login', {user, requestOptions: {}})
                 .then(() => {
                   if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
-                    console.log('User authenticated');
+                    console.log('✓ User authenticated');
                   }
+                  this.$router.push({name: 'Home'});
                 })
                 .catch(() => {
                   if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
-                    console.log('User authentication failed');
+                    console.log('✗ User authentication failed');
                   }
                   this.showLoginFailedModal = true;
                 });
@@ -103,6 +100,7 @@
           });
       },
 
+      // Reset form to original state
       onReset (event) {
         event.preventDefault();
 

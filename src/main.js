@@ -104,6 +104,15 @@ const store = new Vuex.Store({
           });
       });
     },
+    // Logout user from application
+    logout (context) {
+      vueAuth.logout()
+        .then(response => {
+          context.commit('isAuthenticated', {
+            isAuthenticated: vueAuth.isAuthenticated()
+          });
+        });
+    },
     // Check if token is already present and if it is, log user in
     checkAuthentication (context) {
       if (vueAuth.isAuthenticated()) {
@@ -119,11 +128,24 @@ const store = new Vuex.Store({
         }
       }
     },
-    getUserInfo (context) {
+    // Get required user data after login
+    getUserData (context) {
+      if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+        console.log('✓ Loading user data');
+      }
+
       raketa.getUserInfo()
         .then(response => {
           context.commit('user', response);
         });
+    },
+    // Remove user data after logout
+    removeUserData (context) {
+      if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+        console.log('✗ Removing user data');
+      }
+
+      context.commit('user', {});
     }
   }
 });
@@ -148,13 +170,13 @@ Vue.axios.interceptors.response.use(function (response) {
   // Do something with response data
   if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
     console.log(
-      `Calling ${response.config.url} with status ${response.status}`);
+      `⤷ Calling ${response.config.url} with status ${response.status}`);
   }
   return response;
 }, function (error) {
   // Do something with response error
   if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
-    console.log(`Error response from api`);
+    console.log(`⤷ Error response from api`);
   }
   return Promise.reject(error);
 });
