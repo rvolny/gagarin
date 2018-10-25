@@ -1,63 +1,116 @@
 <template>
-  <div id="app">
-    <b-container fluid>
+  <div class="flexible-content">
 
-      <b-navbar toggleable="md" type="dark" variant="info">
+    <!--Navbar-->
+    <navbar position="top" dark color="primary" scrolling>
+      <mdb-navbar-brand tag="div">Raketa</mdb-navbar-brand>
+      <navbar-collapse>
 
-        <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+        <!-- Navbar left -->
+        <navbar-nav>
+          <navbar-item :href="this.$router.resolve({name:'Home'}).route.path" router waves-fixed>Home</navbar-item>
+          <navbar-item :href="this.$router.resolve({name:'Login'}).route.path" router waves-fixed>Login</navbar-item>
+        </navbar-nav>
+        <!-- Navbar left -->
 
-        <b-navbar-brand href="#">NavBar</b-navbar-brand>
+        <!-- Navbar right -->
+        <navbar-nav right>
+          <navbar-item href="#" router waves-fixed>
+            <fa icon="envelope"/>
+          </navbar-item>
+          <dropdown tag="li" class="nav-item">
+            <dropdown-toggle tag="a" navLink color="indigo" slot="toggle" waves-fixed>{{ this.user.name }}
+            </dropdown-toggle>
+            <dropdown-menu>
+              <dropdown-item>Logout</dropdown-item>
+            </dropdown-menu>
+          </dropdown>
+        </navbar-nav>
+        <!-- Navbar right -->
 
-        <b-collapse is-nav id="nav_collapse">
+      </navbar-collapse>
+    </navbar>
+    <!--Navbar-->
 
-          <b-navbar-nav>
-            <b-nav-item href="#">Link</b-nav-item>
-            <b-nav-item href="#" disabled>Disabled</b-nav-item>
-          </b-navbar-nav>
+    <main>
+      <div class="mt-5 p-5">
+        <router-view></router-view>
+      </div>
+    </main>
 
-          <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto">
+    <!-- Footer -->
+    <Footer color="blue" class="font-small pt-4 mt-4">
+      <container class="text-left">
+        <row>
+          <column sm="6">
+            <h5 class="title">Footer Content</h5>
+            <p>Here you can use rows and columns here to organize your footer content.</p>
+          </column>
+          <column sm="6">
+            <h5 class="title">Links</h5>
+            <ul>
+              <li class="list-unstyled"><a href="#">Link 1</a></li>
+              <li class="list-unstyled"><a href="#">Link 2</a></li>
+              <li class="list-unstyled"><a href="#">Link 3</a></li>
+              <li class="list-unstyled"><a href="#">Link 4</a></li>
+            </ul>
+          </column>
+        </row>
+      </container>
+      <div class="footer-copyright text-center py-3">
+        <container fluid>
+          &copy; {{new Date().getFullYear()}} Copyright <a href="#"> Raketa & Gagarin </a>
+        </container>
+      </div>
+    </Footer>
+    <!-- Footer -->
 
-            <b-nav-form>
-              <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
-              <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-            </b-nav-form>
-
-            <b-nav-item-dropdown text="Lang" right>
-              <b-dropdown-item href="#">EN</b-dropdown-item>
-              <b-dropdown-item href="#">ES</b-dropdown-item>
-              <b-dropdown-item href="#">RU</b-dropdown-item>
-              <b-dropdown-item href="#">FA</b-dropdown-item>
-            </b-nav-item-dropdown>
-
-            <b-nav-item-dropdown right>
-              <!-- Using button-content slot -->
-              <template slot="button-content">
-                <em>User</em>
-              </template>
-              <b-dropdown-item href="#">Profile</b-dropdown-item>
-              <b-dropdown-item href="#">Signout</b-dropdown-item>
-            </b-nav-item-dropdown>
-          </b-navbar-nav>
-
-        </b-collapse>
-      </b-navbar>
-
-
-      <img src="./assets/logo.png">
-      <router-view></router-view>
-    </b-container>
   </div>
 </template>
 
 <script>
   import * as Const from './const';
+  import {
+    Column,
+    Container,
+    Dropdown,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    Fa,
+    Footer,
+    mdbNavbarBrand,
+    Navbar,
+    NavbarCollapse,
+    NavbarItem,
+    NavbarNav,
+    Row
+  } from 'mdbvue';
 
   export default {
     name: 'app',
+    components: {
+      Column,
+      Container,
+      Dropdown,
+      DropdownItem,
+      DropdownMenu,
+      DropdownToggle,
+      Fa,
+      Footer,
+      mdbNavbarBrand,
+      Navbar,
+      NavbarCollapse,
+      NavbarItem,
+      NavbarNav,
+      Row
+    },
     computed: {
       isAuthenticated () {
         return this.$store.state.isAuthenticated;
+      },
+      user () {
+        return this.$store.state.user;
       }
     },
     watch: {
@@ -80,13 +133,11 @@
   };
 </script>
 
+<style scoped>
+</style>
+
 <style>
-  #app {
-    /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
-    /*-webkit-font-smoothing: antialiased;*/
-    /*-moz-osx-font-smoothing: grayscale;*/
-    /*text-align: center;*/
-    /*color: #2c3e50;*/
-    /*margin-top: 60px;*/
+  .navbar .dropdown-menu a:hover {
+    color: inherit !important;
   }
 </style>
