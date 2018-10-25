@@ -5,7 +5,8 @@ import * as Const from '../const';
 // List of all available raketa api
 // const BASE_URL = 'http://raketa.local/api';
 const API = {
-  'ME': Const.BASE_API_URL + '/v1/me'
+  'ME': Const.BASE_API_URL + '/v1/me',
+  'CREATE_USER': Const.BASE_API_URL + '/v1/users'
 };
 
 export default {
@@ -28,5 +29,9 @@ export default {
       .then(response => {
         return response.data;
       });
+  },
+
+  createUser (user) {
+    return Vue.axios.post(API.CREATE_USER, user);
   }
 };

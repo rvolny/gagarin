@@ -17,6 +17,10 @@
             <btn color="primary" type="submit">{{ $t('message.auth.buttonLogin') }}</btn>
             <btn outline="primary" type="reset">{{ $t('message.auth.buttonReset') }}</btn>
           </div>
+          <p class="font-small grey-text d-flex justify-content-end mt-4">{{ $t('message.auth.notMember') }}
+            <router-link :to="{ name: 'Registration'}" class="blue-text ml-1">{{ $t('message.auth.register') }}
+            </router-link>
+          </p>
         </form>
       </column>
     </row>
@@ -41,7 +45,6 @@
       </modal-footer>
     </modal>
   </container>
-
 </template>
 
 <script>
