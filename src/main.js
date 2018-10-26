@@ -20,6 +20,8 @@ import veeValidationMessagesEn from 'vee-validate/dist/locale/en';
 import veeValidationMessagesSk from 'vee-validate/dist/locale/sk';
 // Import raketa api
 import raketa from './api/raketa';
+// Import transitions
+import SmoothReflow from './components/SmoothReflow';
 // Import constants
 import * as Const from './const';
 
@@ -185,6 +187,9 @@ Vue.axios.interceptors.response.use(function (response) {
   }
   return Promise.reject(error);
 });
+
+// Register global components
+Vue.component('SmoothReflow', SmoothReflow);
 
 /* eslint-disable no-new */
 new Vue({
