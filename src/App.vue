@@ -36,7 +36,11 @@
 
     <main>
       <div class="mt-5 p-5">
-        <router-view></router-view>
+        <transition
+          name="fade"
+          mode="out-in">
+          <router-view></router-view>
+        </transition>
       </div>
     </main>
 
@@ -142,6 +146,18 @@
 </script>
 
 <style scoped>
+  .fade-enter-active,
+  .fade-leave-active {
+    transition-duration: 0.3s;
+    transition-property: height, opacity;
+    transition-timing-function: ease;
+    overflow: hidden;
+  }
+
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0
+  }
 </style>
 
 <style>
