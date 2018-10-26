@@ -27,8 +27,11 @@
 </template>
 
 <script>
+  import smoothReflow from 'vue-smooth-reflow';
+
   export default {
     name: 'home',
+    mixins: [smoothReflow],
     data () {
       return {
         msg: 'Welcome to Your Vue.js App'
@@ -38,6 +41,9 @@
       user () {
         return this.$store.state.user;
       }
+    },
+    mounted () {
+      this.$smoothReflow();
     }
   };
 </script>

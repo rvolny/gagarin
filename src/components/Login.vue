@@ -51,12 +51,14 @@
   import * as Const from '../const';
   import { Btn, Column, Container, Fa, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row } from 'mdbvue';
   import mdbInputCustom from './MdbInputCustom';
+  import smoothReflow from 'vue-smooth-reflow';
 
   export default {
     name: 'login',
     components: {
       Btn, Column, Container, Fa, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row, mdbInputCustom
     },
+    mixins: [smoothReflow],
     data () {
       return {
         form: {
@@ -71,6 +73,9 @@
       isAuthenticated () {
         return this.$store.state.isAuthenticated;
       }
+    },
+    mounted () {
+      this.$smoothReflow();
     },
     methods: {
       // Submit login form

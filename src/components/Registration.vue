@@ -83,12 +83,14 @@
   import { Btn, Column, Container, Fa, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row } from 'mdbvue';
   import mdbInputCustom from './MdbInputCustom';
   import raketa from '../api/raketa';
+  import smoothReflow from 'vue-smooth-reflow';
 
   export default {
     name: 'registration',
     components: {
       Btn, Column, Container, Fa, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row, mdbInputCustom
     },
+    mixins: [smoothReflow],
     data () {
       return {
         form: {
@@ -102,6 +104,9 @@
         showRegistrationSuccessModal: false,
         showRegistrationFailedModal: false
       };
+    },
+    mounted () {
+      this.$smoothReflow();
     },
     methods: {
       // Submit registration form
