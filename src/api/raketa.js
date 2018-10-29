@@ -6,24 +6,16 @@ import * as Const from '../const';
 // const BASE_URL = 'http://raketa.local/api';
 const API = {
   'ME': Const.BASE_API_URL + '/v1/me',
-  'CREATE_USER': Const.BASE_API_URL + '/v1/users'
+  'CREATE_USER': Const.BASE_API_URL + '/v1/users',
+  'READ_DOCUMENT_TYPES': Const.BASE_API_URL + '/v1/lists/document-types',
+  'READ_INSURANCE_RANGES': Const.BASE_API_URL + '/v1/lists/insurance-ranges',
+  'READ_PACKAGE_TYPES': Const.BASE_API_URL + '/v1/lists/package-types',
+  'READ_TRANSPORTATION_TYPES': Const.BASE_API_URL +
+    '/v1/lists/transportation-types'
 };
 
 export default {
-
-//   getProducts (cb) {
-//     setTimeout(() => cb(_products), 100);
-//   },
-//
-//   buyProducts (products, cb, errorCb) {
-//     setTimeout(() => {
-//       // simulate random checkout failure.
-//       (Math.random() > 0.5 || navigator.userAgent.indexOf('PhantomJS') > -1)
-//         ? cb()
-//         : errorCb();
-//     }, 100);
-//   },
-//
+  // Get logged in user info
   getUserInfo () {
     return Vue.axios.get(API.ME)
       .then(response => {
@@ -31,7 +23,32 @@ export default {
       });
   },
 
+  // Create new user
   createUser (user) {
     return Vue.axios.post(API.CREATE_USER, user);
+  },
+
+  // Get document types list
+  getDocumentTypes () {
+    return Vue.axios.get(API.READ_DOCUMENT_TYPES)
+      .then(response => {return response.data;});
+  },
+
+  // Get insurance ranges list
+  getInsuranceRanges () {
+    return Vue.axios.get(API.READ_INSURANCE_RANGES)
+      .then(response => {return response.data;});
+  },
+
+  // Get package types list
+  getPackageTypes () {
+    return Vue.axios.get(API.READ_PACKAGE_TYPES)
+      .then(response => {return response.data;});
+  },
+
+  // Get transportation types list
+  getTransportationTypes () {
+    return Vue.axios.get(API.READ_TRANSPORTATION_TYPES)
+      .then(response => {return response.data;});
   }
 };

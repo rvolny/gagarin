@@ -124,6 +124,8 @@
         if (this.isAuthenticated) {
           // Load user data
           this.$store.dispatch('getUserData');
+          // Load all lists
+          this.$store.dispatch('getLists');
         } else {
           // Remove user data
           this.$store.dispatch('removeUserData');

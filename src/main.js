@@ -72,7 +72,13 @@ Vue.use(VeeValidate, veeValidateConfig);
 const store = new Vuex.Store({
   state: {
     isAuthenticated: false,
-    user: {}
+    user: {},
+    lists: {
+      documentTypes: {},
+      insuranceRanges: {},
+      packageTypes: {},
+      transportationTypes: {}
+    }
   },
   getters: {
     isAuthenticated: state => {
@@ -88,6 +94,22 @@ const store = new Vuex.Store({
     },
     user (state, payload) {
       state.user = payload;
+    },
+    updateList (state, payload) {
+      switch (payload.list) {
+        case 'documentTypes':
+          state.lists.documentTypes = payload.data;
+          break;
+        case 'insuranceRanges':
+          state.lists.insuranceRanges = payload.data;
+          break;
+        case 'packageTypes':
+          state.lists.packageTypes = payload.data;
+          break;
+        case 'transportationTypes':
+          state.lists.transportationTypes = payload.data;
+          break;
+      }
     }
   },
   actions: {
@@ -106,6 +128,7 @@ const store = new Vuex.Store({
           });
       });
     },
+
     // Logout user from application
     logout (context) {
       vueAuth.logout()
@@ -118,6 +141,7 @@ const store = new Vuex.Store({
           router.push({name: 'Home'});
         });
     },
+
     // Check if token is already present and if it is, log user in
     checkAuthentication (context) {
       if (vueAuth.isAuthenticated()) {
@@ -133,10 +157,11 @@ const store = new Vuex.Store({
         }
       }
     },
+
     // Get required user data after login
     getUserData (context) {
       if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
-        console.log('✓ Loading user data');
+        console.log('Loading user data');
       }
 
       raketa.getUserInfo()
@@ -144,13 +169,57 @@ const store = new Vuex.Store({
           context.commit('user', response);
         });
     },
+
     // Remove user data after logout
     removeUserData (context) {
       if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
-        console.log('✗ Removing user data');
+        console.log('Removing user data');
       }
 
       context.commit('user', {});
+    },
+
+    // Get all common lists
+    getLists (context) {
+      if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
+        console.log('Loading common lists');
+      }
+
+      // Get document types
+      raketa.getDocumentTypes()
+        .then(response => {
+          context.commit('updateList', {
+            list: 'documentTypes',
+            data: response
+          });
+        });
+
+      // Get insurance ranges
+      raketa.getInsuranceRanges()
+        .then(response => {
+          context.commit('updateList', {
+            list: 'insuranceRanges',
+            data: response
+          });
+        });
+
+      // Get package types
+      raketa.getPackageTypes()
+        .then(response => {
+          context.commit('updateList', {
+            list: 'packageTypes',
+            data: response
+          });
+        });
+
+      // Get transportation types
+      raketa.getTransportationTypes()
+        .then(response => {
+          context.commit('updateList', {
+            list: 'transportationTypes',
+            data: response
+          });
+        });
     }
   }
 });
