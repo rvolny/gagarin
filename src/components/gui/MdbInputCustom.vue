@@ -28,7 +28,7 @@
 
 <script>
   import classNames from 'classnames';
-  import waves from '../../node_modules/mdbvue/src/mixins/waves';
+  import waves from '../../../node_modules/mdbvue/src/mixins/waves';
 
   const Input = {
     props: {
