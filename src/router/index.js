@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from '../components/Home';
 import Login from '../components/Login';
 import Registration from '../components/Registration';
+import Sender from '../components/Sender';
 
 Vue.use(Router);
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/registration',
       name: 'Registration',
       component: Registration
+    },
+    {
+      path: '/profile/sender',
+      name: 'Sender',
+      component: Sender
     }
   ]
 });

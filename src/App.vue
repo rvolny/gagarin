@@ -166,4 +166,16 @@
   .navbar .dropdown-menu a:hover {
     color: inherit !important;
   }
+
+  .invalid-feedback-custom {
+    display: block;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+  }
+
+  .is-invalid-custom {
+    border-color: #dc3545 !important;
+  }
 </style>

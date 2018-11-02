@@ -74,18 +74,21 @@ const store = new Vuex.Store({
     isAuthenticated: false,
     user: {},
     lists: {
-      documentTypes: {},
-      insuranceRanges: {},
-      packageTypes: {},
-      transportationTypes: {}
+      documentTypes: [],
+      insuranceRanges: [],
+      packageTypes: [],
+      transportationTypes: []
     }
   },
   getters: {
     isAuthenticated: state => {
       return vueAuth.isAuthenticated();
     },
-    user: state => {
-      return this.user;
+    isSender: state => {
+      return state.user && state.user.sender !== null;
+    },
+    isCourier: state => {
+      return state.user && state.user.courier !== null;
     }
   },
   mutations: {

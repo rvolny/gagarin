@@ -30,10 +30,46 @@ const messages = {
         registrationFailedTitle: 'Registration failed',
         registrationFailedText: 'Unable to finish registration with provided information.',
         registrationFailedButton: 'OK'
+      },
+      sender: {
+        pageTitle: 'Register as a sender',
+        labelDocumentType: 'Document type',
+        selectDefaultDocumentType: 'Choose document type',
+        prefixScanFront: 'Scan front side',
+        labelScanFront: 'Choose file',
+        prefixScanBack: 'Scan back side',
+        labelScanBack: 'Choose file',
+        labelAgreementCheck: 'I agree to the terms of this application.',
+        buttonBecomeSender: 'Become sender',
+        buttonReset: 'Reset',
+        registrationSuccessTitle: 'Sender registration successful',
+        registrationSuccessText: 'You are successfully registered as a sender. From now on, you can send packages.',
+        registrationSuccessButton: 'OK',
+        registrationFailedTitle: 'Sender registration failed',
+        registrationFailedText: 'Unable to finish sender registration with provided information.',
+        registrationFailedButton: 'OK'
+      },
+      lists: {
+        documentType: {
+          ID_CARD: 'Identification card',
+          PASSPORT: 'Passport',
+          DRIVERS_LICENCE: 'Driver\'s license'
+        }
       }
     },
     validations: {
       // Reserved for veeValidate plugin
+      attributes: {
+        email: 'email',
+        password: 'password',
+        name: 'first name',
+        surname: 'surname',
+        passwordConfirmation: 'password',
+        listDocumentTypeId: 'document type',
+        scanFront: 'front side scan',
+        scanBack: 'back side scan',
+        agreementChecked: 'agreement with application terms'
+      }
     }
   },
   sk: {
@@ -66,6 +102,31 @@ const messages = {
         registrationFailedTitle: 'Neúspešná registrácia',
         registrationFailedText: 'Registrácia s uvedenými údajmi sa nepodarila.',
         registrationFailedButton: 'OK'
+      },
+      sender: {
+        pageTitle: 'Registrácia odosielateľa',
+        labelDocumentType: 'Typ dokladu',
+        selectDefaultDocumentType: 'Vyberte typ dokladu',
+        prefixScanFront: 'Predná strana',
+        labelScanFront: 'Vyberte súbor',
+        prefixScanBack: 'Zadná strana',
+        labelScanBack: 'Vyberte súbor',
+        labelAgreementCheck: 'Súhlasím s podmienkami aplikácie.',
+        buttonBecomeSender: 'Registrovať ako odosielateľ',
+        buttonReset: 'Zmazať',
+        registrationSuccessTitle: 'Registrácia odosielateľa úspešná',
+        registrationSuccessText: 'Zaregistrovali ste sa ako odosielateľ. Odteraz môžete posielať balíčky.',
+        registrationSuccessButton: 'OK',
+        registrationFailedTitle: 'Neúspešná registrácia odosielateľa',
+        registrationFailedText: 'Registrácia odosielateľa s uvedenými údajmi sa nepodarila.',
+        registrationFailedButton: 'OK'
+      },
+      lists: {
+        documentType: {
+          ID_CARD: 'Občiansky preukaz',
+          PASSPORT: 'Pas',
+          DRIVERS_LICENCE: 'Vodičský preukaz'
+        }
       }
     },
     validations: {
@@ -75,7 +136,11 @@ const messages = {
         password: 'heslo',
         name: 'krstné meno',
         surname: 'priezvisko',
-        passwordConfirmation: 'heslo'
+        passwordConfirmation: 'heslo',
+        listDocumentTypeId: 'typ dokumentu',
+        scanFront: 'fotka prednej strany',
+        scanBack: 'fotka zadnej strany',
+        agreementChecked: 'súhlas s podmienkami'
       }
     }
   }

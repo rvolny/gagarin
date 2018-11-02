@@ -1,12 +1,36 @@
 <template>
   <smooth-reflow>
+    <container fluid>
+      <row>
+        <column col="4" v-if="!this.$store.getters.isSender">
+          <card>
+            <card-img src="logo.png" alt="Card image cap" waves></card-img>
+            <card-body>
+              <card-title>Sender</card-title>
+              <card-text>Update profile to become sender</card-text>
+              <btn color="primary" @click="$router.push({name: 'Sender'})">Become sender</btn>
+            </card-body>
+          </card>
+        </column>
+        <column col="4" v-if="!this.$store.getters.isCourier">
+          <card>
+            <card-img src="logo.png" alt="Card image cap" waves></card-img>
+            <card-body>
+              <card-title>Courier</card-title>
+              <card-text>Update profile to become courier</card-text>
+              <btn color="primary">Button</btn>
+            </card-body>
+          </card>
+        </column>
+      </row>
+    </container>
+
     <div class="hello">
       <h1>{{ msg }} - {{ $t('message.welcome') }}</h1>
-      <p v-if="user.id">
-        <span>{{ user.name }} {{ user.surname }}</span>
-      </p>
       <p>
         <router-link to="/login">Login</router-link>
+        |
+        <router-link to="/registration">Registration</router-link>
       </p>
       <h2>Essential Links</h2>
       <ul>
@@ -29,8 +53,11 @@
 </template>
 
 <script>
+  import { Btn, Card, CardBody, CardImg, CardText, CardTitle, Column, Container, Row } from 'mdbvue';
+
   export default {
     name: 'home',
+    components: {Btn, Card, CardImg, CardBody, CardTitle, CardText, Column, Container, Row},
     data () {
       return {
         msg: 'Welcome to Your Vue.js App'

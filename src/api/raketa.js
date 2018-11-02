@@ -7,6 +7,7 @@ import * as Const from '../const';
 const API = {
   'ME': Const.BASE_API_URL + '/v1/me',
   'CREATE_USER': Const.BASE_API_URL + '/v1/users',
+  'CREATE_SENDER_SUFFIX': '/sender',
   'READ_DOCUMENT_TYPES': Const.BASE_API_URL + '/v1/lists/document-types',
   'READ_INSURANCE_RANGES': Const.BASE_API_URL + '/v1/lists/insurance-ranges',
   'READ_PACKAGE_TYPES': Const.BASE_API_URL + '/v1/lists/package-types',
@@ -26,6 +27,12 @@ export default {
   // Create new user
   createUser (user) {
     return Vue.axios.post(API.CREATE_USER, user);
+  },
+
+  // Create sender
+  createSender (userId, formData) {
+    const url = `${API.CREATE_USER}/${userId}${API.CREATE_SENDER_SUFFIX}`;
+    return Vue.axios.post(url, formData);
   },
 
   // Get document types list
