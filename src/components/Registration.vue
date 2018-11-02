@@ -52,7 +52,7 @@
           </row>
         </modal-body>
         <modal-footer center>
-          <btn color="success" @click.native="showRegistrationSuccessModal = false">{{
+          <btn color="success" @click.native="showRegistrationSuccessModal = false; $router.push({name: 'Home'})">{{
             $t('message.registration.registrationSuccessButton') }}
           </btn>
         </modal-footer>
