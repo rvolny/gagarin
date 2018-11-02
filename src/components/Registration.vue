@@ -85,7 +85,7 @@
 <script>
   import * as Const from '../const';
   import { Btn, Column, Container, Fa, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row } from 'mdbvue';
-  import mdbInputCustom from './MdbInputCustom';
+  import mdbInputCustom from './gui/MdbInputCustom';
   import raketa from '../api/raketa';
 
   export default {

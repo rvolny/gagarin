@@ -21,7 +21,7 @@ import veeValidationMessagesSk from 'vee-validate/dist/locale/sk';
 // Import raketa api
 import raketa from './api/raketa';
 // Import transitions
-import SmoothReflow from './components/SmoothReflow';
+import SmoothReflow from './components/gui/SmoothReflow';
 // Import constants
 import * as Const from './const';
 
