@@ -178,4 +178,13 @@
   .is-invalid-custom {
     border-color: #dc3545 !important;
   }
+
+  .input-select-custom .select-wrapper {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .input-select-custom .select-wrapper .select-dropdown {
+    margin-bottom: 0;
+  }
 </style>
