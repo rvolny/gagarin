@@ -7,29 +7,16 @@
             <p class="h4 text-center mb-4">{{ $t('message.sender.pageTitle') }}</p>
             <div class="grey-text">
 
-              <!--TODO use select / file upload / checkbox from mdb-->
-              <!--<mdb-select @getValue="getSelectValue">-->
-              <!--<option disabled selected>Choose your option</option>-->
-              <!--<option value="Option 1">Option nr 1</option>-->
-              <!--<option value="Option 2">Option nr 2</option>-->
-              <!--<option value="Option 3">Option nr 3</option>-->
-              <!--<option value="Option 4">Option nr 4</option>-->
-              <!--<option value="Option 5">Option nr 5</option>-->
-              <!--</mdb-select>-->
-              <!--<label>Example label</label>-->
-
-              <div>
-                <label for="listDocumentTypeId">{{ $t('message.sender.labelDocumentType') }}</label>
-                <select v-model="form.list_document_type_id" id="listDocumentTypeId" name="listDocumentTypeId"
-                        class="browser-default custom-select" required v-validate="'included:'+documentTypesListIds">
+              <div class="input-select-custom input-group">
+                <mdb-select-custom @getValue="getListDocumentTypeIdValue" id="listDocumentTypeId"
+                                   name="listDocumentTypeId" required v-validate="'included:'+documentTypesListIds"
+                                   :validationError="errors.first('listDocumentTypeId')">
                   <option selected disabled value="0">{{ $t('message.sender.selectDefaultDocumentType') }}</option>
                   <option v-for="documentType in documentTypesList" :value="documentType.id">{{
                     $t('message.lists.documentType.'+documentType.document_type) }}
                   </option>
-                </select>
-                <div v-if="errors.first('listDocumentTypeId')" class="invalid-feedback-custom">
-                  {{errors.first('listDocumentTypeId')}}
-                </div>
+                </mdb-select-custom>
+                <label for="listDocumentTypeId">{{ $t('message.sender.labelDocumentType') }}</label>
               </div>
 
               <div class="md-form input-group mb-3">
@@ -130,17 +117,29 @@
   import * as Const from '../const';
   import { Btn, Column, Container, Fa, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row } from 'mdbvue';
   import mdbInputCustom from './gui/MdbInputCustom';
+  import mdbSelectCustom from './gui/MdbSelectCustom';
   import raketa from '../api/raketa';
 
   export default {
     name: 'sender',
     components: {
-      Btn, Column, Container, Fa, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row, mdbInputCustom
+      Btn,
+      Column,
+      Container,
+      Fa,
+      Modal,
+      ModalBody,
+      ModalFooter,
+      ModalHeader,
+      ModalTitle,
+      Row,
+      mdbInputCustom,
+      mdbSelectCustom
     },
     data () {
       return {
         form: {
-          list_document_type_id: 0,
+          listDocumentTypeId: 0,
           scanFrontFiles: [],
           scanBackFiles: [],
           agreementChecked: false,
@@ -187,7 +186,7 @@
               let scanFrontFile = (this.form.scanFrontFiles.length > 0) ? this.form.scanFrontFiles[0] : null;
               let scanBackFile = (this.form.scanBackFiles.length > 0) ? this.form.scanBackFiles[0] : null;
 
-              formData.append('list_document_type_id', this.form.list_document_type_id);
+              formData.append('list_document_type_id', this.form.listDocumentTypeId);
               formData.append('agreement_checked_at', this.form.agreementCheckedAt);
               if (scanFrontFile) {
                 formData.append('scan_front', scanFrontFile, scanFrontFile.name);
@@ -228,13 +227,20 @@
         event.preventDefault();
 
         // Reset our form values
-        this.form.list_document_type_id = 0;
+        this.form.listDocumentTypeId = 0;
         this.form.scanFront = [];
         this.form.scanBack = [];
+        this.form.agreementChecked = false;
+        this.form.agreementCheckedAt = null;
 
         // Trick to reset/clear native browser form validation state
         this.showForm = false;
         this.$nextTick(() => {this.showForm = true;});
+      },
+
+      // Get actual value from select
+      getListDocumentTypeIdValue (value) {
+        this.form.listDocumentTypeId = value;
       }
     }
   };
