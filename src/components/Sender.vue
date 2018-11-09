@@ -19,32 +19,19 @@
                 <label for="listDocumentTypeId">{{ $t('message.sender.labelDocumentType') }}</label>
               </div>
 
-              <div class="md-form input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="scanFrontPrefix">{{ $t('message.sender.prefixScanFront') }}</span>
-                </div>
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="scanFront" name="scanFront"
-                         aria-describedby="scanFrontPrefix" v-validate="'required|mimes:image/*,application/pdf'"
-                         @change="form.scanFrontFiles=$event.target.files">
-                  <label class="custom-file-label" for="scanFront">{{ $t('message.sender.labelScanFront') }}</label>
-                </div>
-                <div v-if="errors.first('scanFront')" class="invalid-feedback-custom">{{errors.first('scanFront')}}
-                </div>
-              </div>
+              <mdb-file-input-custom id="scanFront" name="scanFront" btnColor="primary"
+                                     :btnTitle="$t('message.sender.labelScanFront')"
+                                     :textFieldTitle="$t('message.sender.prefixScanFront')"
+                                     v-validate="'required|mimes:image/*,application/pdf'"
+                                     :validationError="errors.first('scanFront')"
+                                     @change.native="form.scanFrontFiles=$event.target.files"/>
 
-              <div class="md-form input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="scanBackPrefix">{{ $t('message.sender.prefixScanBack') }}</span>
-                </div>
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="scanBack" name="scanBack"
-                         aria-describedby="scanBackPrefix" v-validate="'mimes:image/*,application/pdf'"
-                         @change="form.scanBackFiles=$event.target.files">
-                  <label class="custom-file-label" for="scanBack">{{ $t('message.sender.labelScanBack') }}</label>
-                </div>
-                <div v-if="errors.first('scanBack')" class="invalid-feedback-custom">{{errors.first('scanBack')}}</div>
-              </div>
+              <mdb-file-input-custom id="scanBack" name="scanBack" btnColor="primary"
+                                     :btnTitle="$t('message.sender.labelScanBack')"
+                                     :textFieldTitle="$t('message.sender.prefixScanBack')"
+                                     v-validate="'mimes:image/*,application/pdf'"
+                                     :validationError="errors.first('scanBack')"
+                                     @change.native="form.scanBackFiles=$event.target.files"/>
 
               <div class="custom-control custom-checkbox mb-3">
                 <input v-model="form.agreementChecked" type="checkbox" class="custom-control-input"
@@ -116,6 +103,7 @@
 <script>
   import * as Const from '../const';
   import { Btn, Column, Container, Fa, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row } from 'mdbvue';
+  import mdbFileInputCustom from './gui/MdbFileInputCustom';
   import mdbInputCustom from './gui/MdbInputCustom';
   import mdbSelectCustom from './gui/MdbSelectCustom';
   import raketa from '../api/raketa';
@@ -133,6 +121,7 @@
       ModalHeader,
       ModalTitle,
       Row,
+      mdbFileInputCustom,
       mdbInputCustom,
       mdbSelectCustom
     },
