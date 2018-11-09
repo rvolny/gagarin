@@ -224,7 +224,7 @@ const Input = {
 };
 
 export default Input;
-export { Input as mdbInputCustom };
+export { Input as mdbInput };
 </script>
 
 <style scoped>
