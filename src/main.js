@@ -248,7 +248,7 @@ Vue.axios.interceptors.response.use(function (response) {
   // Do something with response data
   if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
     console.log(
-      `⤷ Call to ${response.config.url} finished with status ${response.status}`);
+      `↳ Call to ${response.config.url} finished with status ${response.status}`);
   }
   return response;
 }, function (error) {
