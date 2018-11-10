@@ -33,18 +33,11 @@
                                      :validationError="errors.first('scanBack')"
                                      @change.native="form.scanBackFiles=$event.target.files"/>
 
-              <div class="custom-control custom-checkbox mb-3">
-                <input v-model="form.agreementChecked" type="checkbox" class="custom-control-input"
-                       id="agreementChecked" name="agreementChecked" v-validate="'required'">
-                <label class="custom-control-label" for="agreementChecked">{{ $t('message.sender.labelAgreementCheck')
-                  }}</label>
-                <div v-if="errors.first('agreementChecked')" class="invalid-feedback-custom">
-                  {{errors.first('agreementChecked')}}
-                </div>
-              </div>
-
-              <!--TODO use checkbox from MDB-->
-              <!--<mdb-input type="checkbox" id="checkbox1" label="Material unchecked" />-->
+              <mdb-input-custom type="checkbox" id="agreementChecked" name="agreementChecked"
+                                :label="$t('message.sender.labelAgreementCheck')"
+                                v-validate="'required'"
+                                :validationError="errors.first('agreementChecked')"
+                                @change="form.agreementChecked=$event"/>
 
             </div>
             <div class="text-center">
@@ -169,7 +162,6 @@
         this.$validator.validate()
           .then(result => {
             if (result) {
-              console.log('validation OK');
               // Validation is OK, proceed with sender registration
               let formData = new FormData();
               let scanFrontFile = (this.form.scanFrontFiles.length > 0) ? this.form.scanFrontFiles[0] : null;
@@ -182,10 +174,6 @@
               }
               if (scanBackFile) {
                 formData.append('scan_back', scanBackFile, scanBackFile.name);
-              }
-
-              if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
-                console.log(formData);
               }
 
               // Call crete sender API

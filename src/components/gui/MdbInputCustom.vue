@@ -135,6 +135,16 @@ const Input = {
       type: String
     }
   },
+  $_veeValidate: {
+    // fetch the current value from the innerValue defined in the component data.
+    value () {
+      if (this.type === "checkbox") {
+        // VeeValidate requires empty string for false
+        return this.innerChecked ? 'true' : '';
+      }
+      return this.innerValue;
+    }
+  },
   data() {
     return {
       innerValue: this.value,
