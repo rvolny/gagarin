@@ -122,9 +122,11 @@
     watch: {
       isAuthenticated () {
         if (this.isAuthenticated) {
+          // TODO Remove user data in case another user is logged in
           // Load user data
           this.$store.dispatch('getUserData');
           // Load all lists
+          // TODO Only load lists if not already loaded
           this.$store.dispatch('getLists');
         } else {
           // Remove user data
