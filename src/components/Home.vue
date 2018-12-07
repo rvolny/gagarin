@@ -2,7 +2,7 @@
   <smooth-reflow>
     <container fluid>
       <row>
-        <column col="4" v-if="!this.$store.getters.isSender">
+        <column col="4" v-if="this.$store.getters.isAuthenticated && !this.$store.getters.isSender">
           <card>
             <card-img src="logo.png" alt="Card image cap" waves></card-img>
             <card-body>
@@ -12,7 +12,17 @@
             </card-body>
           </card>
         </column>
-        <column col="4" v-if="!this.$store.getters.isCourier">
+        <column col="4" v-if="this.$store.getters.isSender">
+          <card>
+            <card-img src="logo.png" alt="Card image cap" waves></card-img>
+            <card-body>
+              <card-title>Package</card-title>
+              <card-text>Send a package</card-text>
+              <!--<btn color="primary" @click="$router.push({name: 'Sender'})">Send package</btn>-->
+            </card-body>
+          </card>
+        </column>
+        <column col="4" v-if="this.$store.getters.isAuthenticated && !this.$store.getters.isCourier">
           <card>
             <card-img src="logo.png" alt="Card image cap" waves></card-img>
             <card-body>

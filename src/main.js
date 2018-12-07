@@ -82,13 +82,13 @@ const store = new Vuex.Store({
   },
   getters: {
     isAuthenticated: state => {
-      return vueAuth.isAuthenticated();
+      return state.isAuthenticated;
     },
     isSender: state => {
-      return state.user && state.user.sender !== null;
+      return state.isAuthenticated && typeof (state.user.sender) != 'undefined' && state.user.sender !== null;
     },
     isCourier: state => {
-      return state.user && state.user.courier !== null;
+      return state.isAuthenticated && typeof (state.user.courier) != 'undefined' && state.user.courier !== null;
     }
   },
   mutations: {
