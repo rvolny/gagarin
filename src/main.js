@@ -254,7 +254,7 @@ Vue.axios.interceptors.response.use(function (response) {
 }, function (error) {
   // Do something with response error
   if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
-    console.log(`⤷ Error response from api`);
+    console.log(`✗ Error response from api`);
     console.log(error);
   }
   return Promise.reject(error);

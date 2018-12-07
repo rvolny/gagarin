@@ -18,7 +18,7 @@
             <card-body>
               <card-title>Courier</card-title>
               <card-text>Update profile to become courier</card-text>
-              <btn color="primary">Button</btn>
+              <btn color="primary" @click="$router.push({name: 'Courier'})">Become courier</btn>
             </card-body>
           </card>
         </column>

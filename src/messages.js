@@ -49,6 +49,24 @@ const messages = {
         registrationFailedText: 'Unable to finish sender registration with provided information.',
         registrationFailedButton: 'OK'
       },
+      courier: {
+        pageTitle: 'Register as a courier',
+        labelDocumentType: 'Document type',
+        selectDefaultDocumentType: 'Choose document type',
+        prefixScanFront: 'Scan front side',
+        labelScanFront: 'Choose file',
+        prefixScanBack: 'Scan back side',
+        labelScanBack: 'Choose file',
+        labelAgreementCheck: 'I agree to the terms of this application.',
+        buttonBecomeSender: 'Become courier',
+        buttonReset: 'Reset',
+        registrationSuccessTitle: 'Courier registration successful',
+        registrationSuccessText: 'You are successfully registered as a courier. From now on, you can deliver packages.',
+        registrationSuccessButton: 'OK',
+        registrationFailedTitle: 'Courier registration failed',
+        registrationFailedText: 'Unable to finish courier registration with provided information.',
+        registrationFailedButton: 'OK'
+      },
       lists: {
         documentType: {
           ID_CARD: 'Identification card',
@@ -119,6 +137,24 @@ const messages = {
         registrationSuccessButton: 'OK',
         registrationFailedTitle: 'Neúspešná registrácia odosielateľa',
         registrationFailedText: 'Registrácia odosielateľa s uvedenými údajmi sa nepodarila.',
+        registrationFailedButton: 'OK'
+      },
+      courier: {
+        pageTitle: 'Registrácia kuriéra',
+        labelDocumentType: 'Typ dokladu',
+        selectDefaultDocumentType: 'Vyberte typ dokladu',
+        prefixScanFront: 'Predná strana',
+        labelScanFront: 'Vyberte súbor',
+        prefixScanBack: 'Zadná strana',
+        labelScanBack: 'Vyberte súbor',
+        labelAgreementCheck: 'Súhlasím s podmienkami aplikácie.',
+        buttonBecomeSender: 'Registrovať ako kuriér',
+        buttonReset: 'Zmazať',
+        registrationSuccessTitle: 'Registrácia kuriéra úspešná',
+        registrationSuccessText: 'Zaregistrovali ste sa ako kuriér. Odteraz môžete doručovať balíčky.',
+        registrationSuccessButton: 'OK',
+        registrationFailedTitle: 'Neúspešná registrácia kuriéra',
+        registrationFailedText: 'Registrácia kuriéra s uvedenými údajmi sa nepodarila.',
         registrationFailedButton: 'OK'
       },
       lists: {

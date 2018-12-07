@@ -4,45 +4,45 @@
       <row class="mt-5 align-items-center justify-content-center">
         <column md="6">
           <form @submit="onSubmit" @reset="onReset" enctype="multipart/form-data" novalidate v-if="showForm">
-            <p class="h4 text-center mb-4">{{ $t('message.sender.pageTitle') }}</p>
+            <p class="h4 text-center mb-4">{{ $t('message.courier.pageTitle') }}</p>
             <div class="grey-text">
 
               <div class="input-select-custom input-group">
                 <mdb-select-custom @getValue="getListDocumentTypeIdValue" id="listDocumentTypeId"
                                    name="listDocumentTypeId" required v-validate="'included:'+documentTypesListIds"
                                    :validationError="errors.first('listDocumentTypeId')">
-                  <option selected disabled value="0">{{ $t('message.sender.selectDefaultDocumentType') }}</option>
+                  <option selected disabled value="0">{{ $t('message.courier.selectDefaultDocumentType') }}</option>
                   <option v-for="documentType in documentTypesList" :value="documentType.id">{{
                     $t('message.lists.documentType.'+documentType.document_type) }}
                   </option>
                 </mdb-select-custom>
-                <label for="listDocumentTypeId">{{ $t('message.sender.labelDocumentType') }}</label>
+                <label for="listDocumentTypeId">{{ $t('message.courier.labelDocumentType') }}</label>
               </div>
 
               <mdb-file-input-custom id="scanFront" name="scanFront" btnColor="primary"
-                                     :btnTitle="$t('message.sender.labelScanFront')"
-                                     :textFieldTitle="$t('message.sender.prefixScanFront')"
+                                     :btnTitle="$t('message.courier.labelScanFront')"
+                                     :textFieldTitle="$t('message.courier.prefixScanFront')"
                                      v-validate="'required|mimes:image/*,application/pdf'"
                                      :validationError="errors.first('scanFront')"
                                      @change.native="form.scanFrontFiles=$event.target.files"/>
 
               <mdb-file-input-custom id="scanBack" name="scanBack" btnColor="primary"
-                                     :btnTitle="$t('message.sender.labelScanBack')"
-                                     :textFieldTitle="$t('message.sender.prefixScanBack')"
+                                     :btnTitle="$t('message.courier.labelScanBack')"
+                                     :textFieldTitle="$t('message.courier.prefixScanBack')"
                                      v-validate="'mimes:image/*,application/pdf'"
                                      :validationError="errors.first('scanBack')"
                                      @change.native="form.scanBackFiles=$event.target.files"/>
 
               <mdb-input-custom type="checkbox" id="agreementChecked" name="agreementChecked"
-                                :label="$t('message.sender.labelAgreementCheck')"
+                                :label="$t('message.courier.labelAgreementCheck')"
                                 v-validate="'required'"
                                 :validationError="errors.first('agreementChecked')"
                                 @change="form.agreementChecked=$event"/>
 
             </div>
             <div class="text-center">
-              <btn color="primary" type="submit">{{ $t('message.sender.buttonBecomeSender') }}</btn>
-              <btn outline="primary" type="reset">{{ $t('message.sender.buttonReset') }}</btn>
+              <btn color="primary" type="submit">{{ $t('message.courier.buttonBecomeSender') }}</btn>
+              <btn outline="primary" type="reset">{{ $t('message.courier.buttonReset') }}</btn>
             </div>
           </form>
         </column>
@@ -50,7 +50,7 @@
 
       <modal v-if="showSenderRegistrationSuccessModal" @close="showSenderRegistrationSuccessModal = false" success>
         <modal-header>
-          <modal-title>{{ $t('message.sender.registrationSuccessTitle') }}</modal-title>
+          <modal-title>{{ $t('message.courier.registrationSuccessTitle') }}</modal-title>
         </modal-header>
         <modal-body>
           <row>
@@ -58,20 +58,20 @@
               <fa icon="check" size="4x"/>
             </column>
             <column col="9">
-              <p>{{ $t('message.sender.registrationSuccessText') }}</p>
+              <p>{{ $t('message.courier.registrationSuccessText') }}</p>
             </column>
           </row>
         </modal-body>
         <modal-footer center>
           <btn color="success" @click.native="showSenderRegistrationSuccessModal = false; $router.push({name: 'Home'})">
-            {{ $t('message.sender.registrationSuccessButton') }}
+            {{ $t('message.courier.registrationSuccessButton') }}
           </btn>
         </modal-footer>
       </modal>
 
       <modal v-if="showSenderRegistrationFailedModal" @close="showSenderRegistrationFailedModal = false" danger>
         <modal-header>
-          <modal-title>{{ $t('message.sender.registrationFailedTitle') }}</modal-title>
+          <modal-title>{{ $t('message.courier.registrationFailedTitle') }}</modal-title>
         </modal-header>
         <modal-body>
           <row>
@@ -79,13 +79,13 @@
               <fa icon="exclamation" size="4x"/>
             </column>
             <column col="9">
-              <p>{{ $t('message.sender.registrationFailedText') }}</p>
+              <p>{{ $t('message.courier.registrationFailedText') }}</p>
             </column>
           </row>
         </modal-body>
         <modal-footer center>
           <btn color="danger" @click.native="showSenderRegistrationFailedModal = false">{{
-            $t('message.sender.registrationFailedButton') }}
+            $t('message.courier.registrationFailedButton') }}
           </btn>
         </modal-footer>
       </modal>
@@ -102,7 +102,7 @@
   import raketa from '../api/raketa';
 
   export default {
-    name: 'sender',
+    name: 'courier',
     components: {
       Btn,
       Column,
@@ -177,11 +177,11 @@
               }
 
               // Call crete sender API
-              raketa.createSender(this.$store.state.user.id, formData)
+              raketa.createCourier(this.$store.state.user.id, formData)
                 .then(response => {
-                  // Sender was created
+                  // Courier was created
                   if (Const.LOG_LEVEL >= Const.LOG_DEBUG) {
-                    console.log('✓ Sender created');
+                    console.log('✓ Courier created');
                   }
 
                   // Refresh user data
