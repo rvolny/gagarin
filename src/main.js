@@ -22,6 +22,8 @@ import veeValidationMessagesSk from 'vee-validate/dist/locale/sk';
 import raketa from './api/raketa';
 // Import transitions
 import SmoothReflow from './components/gui/SmoothReflow';
+// Import plugins
+import Utils from './plugins/Utils';
 // Import constants
 import * as Const from './const';
 
@@ -262,6 +264,9 @@ Vue.axios.interceptors.response.use(function (response) {
 
 // Register global components
 Vue.component('SmoothReflow', SmoothReflow);
+
+// Use plugins
+Vue.use(Utils);
 
 /* eslint-disable no-new */
 new Vue({
