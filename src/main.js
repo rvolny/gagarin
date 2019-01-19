@@ -87,10 +87,29 @@ const store = new Vuex.Store({
       return state.isAuthenticated;
     },
     isSender: state => {
-      return state.isAuthenticated && typeof (state.user.sender) != 'undefined' && state.user.sender !== null;
+      return state.isAuthenticated && typeof (state.user.sender) !=
+        'undefined' && state.user.sender !== null;
     },
     isCourier: state => {
-      return state.isAuthenticated && typeof (state.user.courier) != 'undefined' && state.user.courier !== null;
+      return state.isAuthenticated && typeof (state.user.courier) !=
+        'undefined' && state.user.courier !== null;
+    },
+    getAuthToken: state => {
+      return vueAuth.getToken();
+    },
+    packageTypesListIds: state => {
+      let ids = [];
+      state.lists.documentTypes.forEach(function (element) {
+        ids.push(element.id);
+      });
+      return ids.join(',');
+    },
+    insuranceRangesListIds: state => {
+      let ids = [];
+      state.lists.insuranceRanges.forEach(function (element) {
+        ids.push(element.id);
+      });
+      return ids.join(',');
     }
   },
   mutations: {

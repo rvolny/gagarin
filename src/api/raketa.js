@@ -9,6 +9,8 @@ const API = {
   'CREATE_USER': Const.BASE_API_URL + '/v1/users',
   'CREATE_SENDER_SUFFIX': '/sender',
   'CREATE_COURIER_SUFFIX': '/courier',
+  'CREATE_PACKAGE': Const.BASE_API_URL + '/v1/packages',
+  'CREATE_FILE': Const.BASE_API_URL + '/v1/files',
   'READ_DOCUMENT_TYPES': Const.BASE_API_URL + '/v1/lists/document-types',
   'READ_INSURANCE_RANGES': Const.BASE_API_URL + '/v1/lists/insurance-ranges',
   'READ_PACKAGE_TYPES': Const.BASE_API_URL + '/v1/lists/package-types',
@@ -64,5 +66,15 @@ export default {
   getTransportationTypes () {
     return Vue.axios.get(API.READ_TRANSPORTATION_TYPES)
       .then(response => {return response.data;});
+  },
+
+  // Upload file
+  uploadFile (formData) {
+    return Vue.axios.post(API.CREATE_FILE, formData);
+  },
+
+  // Create package
+  createPackage (packageBox) {
+    return Vue.axios.post(API.CREATE_PACKAGE, packageBox);
   }
 };

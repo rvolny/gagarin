@@ -67,11 +67,83 @@ const messages = {
         registrationFailedText: 'Unable to finish courier registration with provided information.',
         registrationFailedButton: 'OK'
       },
+      package: {
+        pageTitle: 'Send a package',
+        blockPackage: 'Package',
+        blockPickup: 'Pickup',
+        blockDelivery: 'Delivery',
+        blockPrice: 'Price',
+        blockOther: 'Miscellaneous',
+        labelContents: 'Package contents',
+        labelPackageType: 'Package type',
+        selectDefaultPackageType: 'Choose package type',
+        labelPickupLocation: 'Pickup location',
+        labelPickupDate: 'Pickup date',
+        labelPickupTime: 'Pickup time',
+        labelPickupNote: 'Pickup note',
+        labelDeliveryLocation: 'Delivery location',
+        labelDeliveryDate: 'Delivery date',
+        labelDeliveryTime: 'Delivery time',
+        labelDeliveryNote: 'Delivery note',
+        labelPrice: 'Delivery price',
+        labelPriceMaxIncrease: 'Maximum price increase',
+        labelInsuranceRange: 'Insurance',
+        selectDefaultInsuranceRange: 'Choose insurance range',
+        labelAlternativeContact: 'Alternative contact',
+        labelPassword: 'Delivery password',
+        placeholderTime: 'Select time',
+        buttonSend: 'Send package',
+        buttonReset: 'Reset',
+        packageCreationSuccessTitle: 'Package successfully created',
+        packageCreationSuccessText: 'Your package was registered and is waiting for a courier. After courier is found, you will discuss details and the package will be delivered.',
+        packageCreationSuccessButton: 'OK',
+        packageCreationFailedTitle: 'Package was not created',
+        packageCreationFailedText: 'We were unable to create your package because of technical error. Please try again later.',
+        packageCreationFailedButton: 'OK'
+      },
       lists: {
         documentType: {
           ID_CARD: 'Identification card',
           PASSPORT: 'Passport',
           DRIVERS_LICENCE: 'Driver\'s license'
+        },
+        packageType: {
+          PACKAGE_SMALL: 'Small package',
+          PACKAGE_MEDIUM: 'Medium package',
+          PACKAGE_LARGE: 'Large package',
+          ENVELOPE_A4: 'Envelope A4',
+          ENVELOPE_A5: 'Envelope A5'
+        },
+        insuranceRange: {
+          'none': 'none',
+          'upto25': 'Up to 25 EUR',
+          'upto50': 'Up to 50 EUR',
+          'over50': 'Over 50 EUR'
+        }
+      },
+      calendar: {
+        month: {
+          0: 'January',
+          1: 'February',
+          2: 'March',
+          3: 'April',
+          4: 'May',
+          5: 'June',
+          6: 'July',
+          7: 'August',
+          8: 'September',
+          9: 'October',
+          10: 'November',
+          11: 'December'
+        },
+        week: {
+          0: 'Mo',
+          1: 'Tu',
+          2: 'We',
+          3: 'Th',
+          4: 'Fr',
+          5: 'Sa',
+          6: 'Su'
         }
       }
     },
@@ -84,9 +156,16 @@ const messages = {
         surname: 'surname',
         passwordConfirmation: 'password',
         listDocumentTypeId: 'document type',
+        listPackageTypeId: 'package type',
+        listInsuranceRangeId: 'insurance level',
         scanFront: 'front side scan',
         scanBack: 'back side scan',
-        agreementChecked: 'agreement with application terms'
+        agreementChecked: 'agreement with application terms',
+        contents: 'contents',
+        pickupLocation: 'pickup location',
+        deliveryLocation: 'delivery location',
+        price: 'price',
+        priceMaxIncrease: 'price increase'
       }
     }
   },
@@ -157,11 +236,83 @@ const messages = {
         registrationFailedText: 'Registrácia kuriéra s uvedenými údajmi sa nepodarila.',
         registrationFailedButton: 'OK'
       },
+      package: {
+        pageTitle: 'Zaslanie balíčka',
+        blockPackage: 'Balíček',
+        blockPickup: 'Odoslanie',
+        blockDelivery: 'Doručenie',
+        blockPrice: 'Cena',
+        blockOther: 'Ostatné',
+        labelContents: 'Obsah balíčka',
+        labelPackageType: 'Veľkosť balíčka',
+        selectDefaultPackageType: 'Vyberte typ balíčka',
+        labelPickupLocation: 'Miesto vyzdvihnutia',
+        labelPickupDate: 'Dátum vyzdvihnutia',
+        labelPickupTime: 'Čas vyzdvihnutia',
+        labelPickupNote: 'Poznámka ku vyzdvihnutiu',
+        labelDeliveryLocation: 'Miesto doručenia',
+        labelDeliveryDate: 'Dátum doručenia',
+        labelDeliveryTime: 'Čas doručenia',
+        labelDeliveryNote: 'Poznámka k doručeniu',
+        labelPrice: 'Cena za doručenie',
+        labelPriceMaxIncrease: 'Maximálne navýšenie ceny',
+        labelInsuranceRange: 'Poistenie',
+        selectDefaultInsuranceRange: 'Vyberte poistenie',
+        labelAlternativeContact: 'Alternatívny kontakt',
+        labelPassword: 'Heslo pre doručenie',
+        placeholderTime: 'Vyberte čas',
+        buttonSend: 'Poslať balíček',
+        buttonReset: 'Zmazať',
+        packageCreationSuccessTitle: 'Balíček bol úspešne vytvorený',
+        packageCreationSuccessText: 'Váš balíček bol zaregistrovaný a čaká na kuriéra. Po nájdení kuriéra si dohodnete detaily a balíček bude doručený adresátovi.',
+        packageCreationSuccessButton: 'OK',
+        packageCreationFailedTitle: 'Balíček sa nepodarilo vytvoriť',
+        packageCreationFailedText: 'Balíček sa nepodarilo vytvoriť kvôli technickej chybe. Skúste to o chvíľu.',
+        packageCreationFailedButton: 'OK'
+      },
       lists: {
         documentType: {
           ID_CARD: 'Občiansky preukaz',
           PASSPORT: 'Pas',
           DRIVERS_LICENCE: 'Vodičský preukaz'
+        },
+        packageType: {
+          PACKAGE_SMALL: 'Malý balíček',
+          PACKAGE_MEDIUM: 'Stredný balík',
+          PACKAGE_LARGE: 'Veľký balík',
+          ENVELOPE_A4: 'Obálka A4',
+          ENVELOPE_A5: 'Obálka A5'
+        },
+        insuranceRange: {
+          'none': 'žiadne',
+          'upto25': 'Do 25 EUR',
+          'upto50': 'Do 50 EUR',
+          'over50': 'Nad 50 EUR'
+        }
+      },
+      calendar: {
+        month: {
+          0: 'Január',
+          1: 'Február',
+          2: 'Marec',
+          3: 'Apríl',
+          4: 'Máj',
+          5: 'Jún',
+          6: 'Júl',
+          7: 'August',
+          8: 'September',
+          9: 'Október',
+          10: 'November',
+          11: 'December'
+        },
+        week: {
+          0: 'Po',
+          1: 'Ut',
+          2: 'St',
+          3: 'Št',
+          4: 'Pi',
+          5: 'So',
+          6: 'Ne'
         }
       }
     },
@@ -174,9 +325,16 @@ const messages = {
         surname: 'priezvisko',
         passwordConfirmation: 'heslo',
         listDocumentTypeId: 'typ dokumentu',
+        listPackageTypeId: 'veľkosť balíčka',
+        listInsuranceRangeId: 'výška poistenia',
         scanFront: 'fotka prednej strany',
         scanBack: 'fotka zadnej strany',
-        agreementChecked: 'súhlas s podmienkami'
+        agreementChecked: 'súhlas s podmienkami',
+        contents: 'obsah',
+        pickupLocation: 'miesto vyzdvihnutia',
+        deliveryLocation: 'miesto doručenia',
+        price: 'cena',
+        priceMaxIncrease: 'navýšenie ceny'
       }
     }
   }

@@ -18,7 +18,7 @@
             <card-body>
               <card-title>Package</card-title>
               <card-text>Send a package</card-text>
-              <!--<btn color="primary" @click="$router.push({name: 'Sender'})">Send package</btn>-->
+              <btn color="primary" @click="$router.push({name: 'Package'})">Send package</btn>
             </card-body>
           </card>
         </column>

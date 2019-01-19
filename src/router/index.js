@@ -5,6 +5,7 @@ import Login from '../components/Login';
 import Registration from '../components/Registration';
 import Sender from '../components/Sender';
 import Courier from '../components/Courier';
+import Package from '../components/Package';
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/profile/courier',
       name: 'Courier',
       component: Courier
+    },
+    {
+      path: '/package',
+      name: 'Package',
+      component: Package
     }
   ]
 });
