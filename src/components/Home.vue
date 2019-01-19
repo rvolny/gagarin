@@ -15,7 +15,7 @@
 
     <container fluid v-if="this.$store.getters.isAuthenticated">
       <row>
-        <column col="4" v-if="!this.$store.getters.isSender">
+        <column lg="4" md="6" sm="12" class="mb-3" v-if="!this.$store.getters.isSender">
           <card class="text-center">
             <mdb-icon icon="send" size="5x" class="amber-text pt-3"/>
             <card-body>
@@ -27,7 +27,7 @@
             </card-body>
           </card>
         </column>
-        <column col="4" v-if="this.$store.getters.isSender">
+        <column lg="4" md="6" sm="12" class="mb-3" v-if="this.$store.getters.isSender">
           <card class="text-center">
             <mdb-icon icon="dropbox" size="5x" class="green-text pt-3"/>
             <card-body>
@@ -39,7 +39,7 @@
             </card-body>
           </card>
         </column>
-        <column col="4" v-if="!this.$store.getters.isCourier">
+        <column lg="4" md="6" sm="12" class="mb-3" v-if="!this.$store.getters.isCourier">
           <card class="text-center">
             <mdb-icon icon="cubes" size="5x" class="red-text pt-3"/>
             <card-body>
