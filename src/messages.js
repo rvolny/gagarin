@@ -2,7 +2,37 @@
 const messages = {
   en: {
     message: {
-      welcome: 'Welcome',
+      app: {
+        name: 'GAGARIN',
+        copyrightName: 'Raketa & Gagarin',
+        copyright: 'All rights reserved'
+      },
+      menu: {
+        home: 'Home',
+        login: 'Login',
+        logout: 'Logout',
+        registration: 'Registration'
+      },
+      homepage: {
+        tagline: 'Send a package in Slovakia with new and unique service.',
+        cards: {
+          becomeSender: {
+            label: 'Sender',
+            text: 'If you want to send a package, add required information to your profile.',
+            button: 'Extend profile'
+          },
+          becomeCourier: {
+            label: 'Courier',
+            text: 'If you want to become a courier, add required information to your profile.',
+            button: 'Extend profile'
+          },
+          sendPackage: {
+            label: 'Package',
+            text: 'Send a package anywhere in Slovakia',
+            button: 'Send package'
+          }
+        }
+      },
       auth: {
         pageTitle: 'Sign in',
         labelEmail: 'Your email',
@@ -171,7 +201,37 @@ const messages = {
   },
   sk: {
     message: {
-      welcome: 'Vitajte',
+      app: {
+        name: 'GAGARIN',
+        copyrightName: 'Raketa & Gagarin',
+        copyright: 'Všetky práva vyhradené'
+      },
+      menu: {
+        home: 'Domov',
+        login: 'Prihlásiť',
+        logout: 'Odhlásiť',
+        registration: 'Registrácia'
+      },
+      homepage: {
+        tagline: 'Pošlite balík po celom Slovensku novým, unikátnym spôsobom.',
+        cards: {
+          becomeSender: {
+            label: 'Odosielateľ',
+            text: 'Ak sa chcete posielať balíčky, rozšírte si účet o potrebné údaje.',
+            button: 'Rozšíriť účet'
+          },
+          becomeCourier: {
+            label: 'Kuriér',
+            text: 'Ak sa chcete stať kuriérom, rozšírte si účet o potrebné údaje.',
+            button: 'Rozšíriť účet'
+          },
+          sendPackage: {
+            label: 'Balíček',
+            text: 'Pošlite balíček kdekoľvek na celom Slovensku.',
+            button: 'Poslať balíček'
+          }
+        }
+      },
       auth: {
         pageTitle: 'Prihlásenie',
         labelEmail: 'Vaša e-mailová adresa',
