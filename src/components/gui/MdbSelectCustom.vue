@@ -29,10 +29,10 @@
 
 <script>
 import classNames from 'classnames';
-import mdbSelectInput from '../../../node_modules/mdbvue/src/components/pro/SelectInput';
-import mdbSelectOptions from '../../../node_modules/mdbvue/src/components/pro/SelectOptions';
-import mdbSelectOption from '../../../node_modules/mdbvue/src/components/pro/SelectOption';
-import mdbButton from '../../../node_modules/mdbvue/src/components/Button';
+import mdbSelectInput from '../../../node_modules/mdbvue/src/components/pro/Forms/SelectInput';
+import mdbSelectOptions from '../../../node_modules/mdbvue/src/components/pro/Forms/SelectOptions';
+import mdbSelectOption from '../../../node_modules/mdbvue/src/components/pro/Forms/SelectOption';
+import mdbButton from '../../../node_modules/mdbvue/src/components/Components/Button';
 import { mixin as clickaway } from 'vue-clickaway';
 
 const Select = {
