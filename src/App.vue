@@ -21,8 +21,8 @@
 
         <!-- Navbar right begin -->
         <navbar-nav right>
-          <navbar-item :href="this.$router.resolve({name:'Login'}).route.path" router waves-fixed
-                       v-if="!isAuthenticated">{{ $t('message.menu.login') }}
+          <navbar-item v-if="!isAuthenticated" router waves-fixed @click.native="$router.push({name: 'Login'})">{{
+            $t('message.menu.login') }}
           </navbar-item>
           <navbar-item href="#" router waves-fixed v-if="isAuthenticated">
             <fa icon="envelope"/>
@@ -72,7 +72,7 @@
       <!--</container>-->
       <div class="footer-copyright text-center py-3">
         <container fluid>
-          &copy; {{new Date().getFullYear()}} {{ $t('message.app.copyright') }} <a href="#">{{
+          &copy; {{ new Date().getFullYear() }} {{ $t('message.app.copyright') }} <a href="#">{{
           $t('message.app.copyrightName') }}</a>
         </container>
       </div>
