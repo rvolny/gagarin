@@ -70,6 +70,7 @@
       };
     },
     computed: {
+      // TODO remove, unused?
       isAuthenticated () {
         return this.$store.state.isAuthenticated;
       }

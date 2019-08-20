@@ -83,6 +83,7 @@ const store = new Vuex.Store({
     }
   },
   getters: {
+    // TODO remove, unnecessary
     isAuthenticated: state => {
       return state.isAuthenticated;
     },
