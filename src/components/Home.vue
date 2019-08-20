@@ -17,7 +17,7 @@
       <row>
         <column lg="4" md="6" sm="12" class="mb-3" v-if="!this.$store.getters.isSender">
           <card class="text-center">
-            <mdb-icon icon="send" size="5x" class="amber-text pt-3"/>
+            <mdb-icon icon="paper-plane" size="5x" class="amber-text pt-3"/>
             <card-body>
               <card-title>{{ $t('message.homepage.cards.becomeSender.label') }}</card-title>
               <card-text>{{ $t('message.homepage.cards.becomeSender.text') }}</card-text>
@@ -29,7 +29,7 @@
         </column>
         <column lg="4" md="6" sm="12" class="mb-3" v-if="this.$store.getters.isSender">
           <card class="text-center">
-            <mdb-icon icon="dropbox" size="5x" class="green-text pt-3"/>
+            <mdb-icon icon="box" size="5x" class="green-text pt-3"/>
             <card-body>
               <card-title>{{ $t('message.homepage.cards.sendPackage.label') }}</card-title>
               <card-text>{{ $t('message.homepage.cards.sendPackage.text') }}</card-text>
