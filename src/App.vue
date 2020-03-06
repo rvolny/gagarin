@@ -42,7 +42,7 @@
     <!-- Navbar end -->
 
     <main>
-      <div class="mt-5 p-5">
+      <div class="mt-5 p-2">
         <transition
           name="fade"
           mode="out-in">

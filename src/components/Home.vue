@@ -1,9 +1,9 @@
 <template>
   <smooth-reflow>
     <container v-if="!this.$store.getters.isAuthenticated">
-      <div class="hello">
+      <div class="hello mt-5">
         <!--TODO: resize image to correct size-->
-        <img src="../assets/gagarin-logo-blue.png" :alt="$t('message.app.name')" width="320"/>
+        <img src="../assets/gagarin-logo-blue.png" :alt="$t('message.app.name')" width="240"/>
         <p class="mt-3">{{ $t('message.homepage.tagline') }}</p>
         <p>
           <router-link :to="{name: 'Login'}">{{ $t('message.menu.login') }}</router-link>
@@ -14,7 +14,7 @@
     </container>
 
     <container fluid v-if="this.$store.getters.isAuthenticated">
-      <row>
+      <row class="mt-5">
         <column lg="4" md="6" sm="12" class="mb-3" v-if="!this.$store.getters.isSender">
           <card class="text-center">
             <mdb-icon icon="paper-plane" size="5x" class="amber-text pt-3"/>
