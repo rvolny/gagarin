@@ -14,7 +14,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bootstrap-css-only": "^4.2.1",
     "mdbvue": "git+https://oauth2:___MDBVUE_PASSWORD___@git.mdbootstrap.com/mdb/vue/vu-pro.git#5.8.1",
     "vee-validate": "^2.1.5",
